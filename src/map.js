@@ -1,13 +1,14 @@
+const tail = require("./tail");
+var head = 0;
 const map = (list, operation) => {
-  var array = [],
-    start = 0;
-  changeValue(list, operation, array, start);
+  var array = [];
+  changeValue(list, operation, array);
   return array;
 };
 
-const changeValue = (list, operation, array, index) => {
-  if (index == list.length) return;
-  array.push(operation(list[index]));
-  changeValue(list, operation, array, index++);
+const changeValue = (list, operation, array) => {
+  if (list.length == head) return;
+  array.push(operation(list[head]));
+  changeValue(tail(list), operation, array);
 };
 module.exports = map;

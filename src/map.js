@@ -1,13 +1,13 @@
-const map = (list, mapfunction) => {
-  var result = [];
-  var start = 0;
-  mapCurrentPosition(list, mapfunction, result, start);
-  return result;
+const map = (list, operation) => {
+  var array = [],
+    start = 0;
+  changeValue(list, operation, array, start);
+  return array;
 };
 
-const mapCurrentPosition = (list, mapfunction, result, currentPosition) => {
-  if (currentPosition == list.length) return;
-  result.push(mapfunction(list[currentPosition]));
-  mapCurrentPosition(list, mapfunction, result, currentPosition + 1);
+const changeValue = (list, operation, array, index) => {
+  if (index == list.length) return;
+  array.push(operation(list[index]));
+  changeValue(list, operation, array, index++);
 };
 module.exports = map;
